@@ -77,6 +77,10 @@ public class Starter {
         List<Employee> bossesTyped = em.createQuery("SELECT e FROM Employee e WHERE e.boss IS NULL").getResultList();
         LOGGER.info("Result size:"+bossesTyped.size()+", Result content:"+bossesTyped.toString());
 
+        //Parametrized query
+        List<Employee> onlySmith = em.createQuery("SELECT e FROM Employee e WHERE e.name LIKE :empName").setParameter("empName", "Smith").getResultList();
+        LOGGER.info("Result size:"+onlySmith.size()+", Result content:"+onlySmith.toString());
+
     }
 
 }
