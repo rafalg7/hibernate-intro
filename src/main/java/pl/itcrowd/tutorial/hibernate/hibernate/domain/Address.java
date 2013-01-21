@@ -1,4 +1,4 @@
-package pl.itcrowd.tutorial.hibernate.domain;
+package pl.itcrowd.tutorial.hibernate.hibernate.domain;
 
 import javax.persistence.*;
 import java.io.Serializable;

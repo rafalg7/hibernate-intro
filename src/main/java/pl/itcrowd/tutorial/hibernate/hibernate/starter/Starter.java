@@ -1,15 +1,16 @@
-package pl.itcrowd.tutorial.hibernate.starter;
+package pl.itcrowd.tutorial.hibernate.hibernate.starter;
 
-import pl.itcrowd.tutorial.hibernate.domain.Address;
-import pl.itcrowd.tutorial.hibernate.domain.Company;
-import pl.itcrowd.tutorial.hibernate.domain.Department;
-import pl.itcrowd.tutorial.hibernate.domain.Employee;
+import pl.itcrowd.tutorial.hibernate.hibernate.domain.Address;
+import pl.itcrowd.tutorial.hibernate.hibernate.domain.Company;
+import pl.itcrowd.tutorial.hibernate.hibernate.domain.Department;
+import pl.itcrowd.tutorial.hibernate.hibernate.domain.Employee;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.Singleton;
 import javax.ejb.Startup;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.util.List;
 import java.util.logging.Logger;
 
 @Singleton
@@ -43,7 +44,6 @@ public class Starter {
         department2.setCompany(company);
         department2.setAddress(address);
 
-
         Employee employee3 = new Employee();
         employee3.setName("M. Smith");
         employee3.setAddress(address);
@@ -66,5 +66,12 @@ public class Starter {
         em.persist(employee2);
         em.persist(employee3);
 
+        makeExampleQueries();
     }
+
+    private void makeExampleQueries(){
+        List<Employee> result = em.createNamedQuery("findAllBosses").getResultList();
+        LOGGER.info("Result size:"+result.size()+", Result content:"+result.toString());
+    }
+
 }

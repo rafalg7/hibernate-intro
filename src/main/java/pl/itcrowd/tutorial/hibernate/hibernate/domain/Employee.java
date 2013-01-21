@@ -1,4 +1,4 @@
-package pl.itcrowd.tutorial.hibernate.domain;
+package pl.itcrowd.tutorial.hibernate.hibernate.domain;
 
 
 import javax.persistence.*;
@@ -6,6 +6,9 @@ import java.io.Serializable;
 
 @Entity
 @Table(name = "EMPLOYEE")
+@NamedQueries({
+        @NamedQuery(name = "findAllBosses", query = "SELECT e FROM Employee e WHERE e.boss IS NULL")
+})
 public class Employee implements Serializable {
 
     @Id
