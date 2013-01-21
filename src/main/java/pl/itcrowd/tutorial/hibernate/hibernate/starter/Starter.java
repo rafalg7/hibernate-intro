@@ -72,6 +72,11 @@ public class Starter {
     private void makeExampleQueries(){
         List<Employee> result = em.createNamedQuery("findAllBosses").getResultList();
         LOGGER.info("Result size:"+result.size()+", Result content:"+result.toString());
+
+        //The same query as above, using typed query
+        List<Employee> bossesTyped = em.createQuery("SELECT e FROM Employee e WHERE e.boss IS NULL").getResultList();
+        LOGGER.info("Result size:"+bossesTyped.size()+", Result content:"+bossesTyped.toString());
+
     }
 
 }
