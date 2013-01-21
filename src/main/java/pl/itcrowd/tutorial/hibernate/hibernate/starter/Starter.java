@@ -10,6 +10,7 @@ import javax.ejb.Singleton;
 import javax.ejb.Startup;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -80,6 +81,9 @@ public class Starter {
         //Parametrized query
         List<Employee> onlySmith = em.createQuery("SELECT e FROM Employee e WHERE e.name LIKE :empName").setParameter("empName", "Smith").getResultList();
         LOGGER.info("Result size:"+onlySmith.size()+", Result content:"+onlySmith.toString());
+
+        Query updQuery = em.createQuery("UPDATE Employee e SET e.boss = NULL WHERE e.name LIKE 'Kowalski'");
+        updQuery.executeUpdate();
 
     }
 
