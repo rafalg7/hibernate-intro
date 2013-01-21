@@ -96,6 +96,13 @@ public class Starter {
         //DISTINCT
         List<String> cityList = em.createQuery("SELECT DISTINCT e.address.city FROM Employee e").getResultList();
         LOGGER.info("Result size:"+cityList.size()+", Result content:"+cityList.toString());
+
+
+        //different than
+        List<String> cities = em.createQuery("SELECT e.address.city FROM Employee e WHERE e.address.city <> 'Tarnow'").getResultList();
+        LOGGER.info("Result size:"+cities.size()+", Result content:"+cities.toString());
+
+
     }
 
 }
