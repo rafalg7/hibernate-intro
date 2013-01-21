@@ -1,9 +1,9 @@
-package pl.itcrowd.tutorial.hibernate.hibernate.starter;
+package pl.itcrowd.tutorial.hibernate.starter;
 
-import pl.itcrowd.tutorial.hibernate.hibernate.domain.Address;
-import pl.itcrowd.tutorial.hibernate.hibernate.domain.Company;
-import pl.itcrowd.tutorial.hibernate.hibernate.domain.Department;
-import pl.itcrowd.tutorial.hibernate.hibernate.domain.Employee;
+import pl.itcrowd.tutorial.hibernate.domain.Address;
+import pl.itcrowd.tutorial.hibernate.domain.Company;
+import pl.itcrowd.tutorial.hibernate.domain.Employee;
+import pl.itcrowd.tutorial.hibernate.domain.Department;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.Singleton;
@@ -92,6 +92,10 @@ public class Starter {
                 "SELECT DISTINCT d.address.city FROM Department d WHERE d.company.name LIKE 'ITCrowd')")
                 .getResultList();
         LOGGER.info("Result size:"+employeesInDeptCity.size()+", Result content:"+employeesInDeptCity.toString());
+
+        //DISTINCT
+        List<String> cityList = em.createQuery("SELECT DISTINCT e.address.city FROM Employee e").getResultList();
+        LOGGER.info("Result size:"+cityList.size()+", Result content:"+cityList.toString());
     }
 
 }

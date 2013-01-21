@@ -1,4 +1,4 @@
-package pl.itcrowd.tutorial.hibernate.hibernate.domain;
+package pl.itcrowd.tutorial.hibernate.domain;
 
 
 import javax.persistence.*;
