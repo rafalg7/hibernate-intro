@@ -82,9 +82,16 @@ public class Starter {
         List<Employee> onlySmith = em.createQuery("SELECT e FROM Employee e WHERE e.name LIKE :empName").setParameter("empName", "Smith").getResultList();
         LOGGER.info("Result size:"+onlySmith.size()+", Result content:"+onlySmith.toString());
 
+        //Update query
         Query updQuery = em.createQuery("UPDATE Employee e SET e.boss = NULL WHERE e.name LIKE 'Kowalski'");
         updQuery.executeUpdate();
 
+        //Query with IN and subquery
+        List<Employee> employeesInDeptCity = em.createQuery("SELECT e FROM Employee e " +
+                "WHERE e.address.city IN(" +
+                "SELECT DISTINCT d.address.city FROM Department d WHERE d.company.name LIKE 'ITCrowd')")
+                .getResultList();
+        LOGGER.info("Result size:"+employeesInDeptCity.size()+", Result content:"+employeesInDeptCity.toString());
     }
 
 }
